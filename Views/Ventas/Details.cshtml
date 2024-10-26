@@ -1,0 +1,65 @@
+﻿@model UspgPOS.Models.Venta
+
+@{
+    ViewData["Title"] = "Detalles de Venta";
+}
+
+<h1>Detalles de Venta</h1>
+
+<div>
+    <h4>Venta</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Fecha)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Fecha)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Total)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Total)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Cliente)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(modelItem => modelItem.Cliente.Nit)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Sucursal)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(modelItem => modelItem.Sucursal.Id)
+        </dd>
+    </dl>
+</div>
+
+<h4>Detalles de Productos</h4>
+<table class="table">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.DetallesVentas.First().Producto.Nombre)</th>
+            <th>@Html.DisplayNameFor(model => model.DetallesVentas.First().Cantidad)</th>
+            <th>@Html.DisplayNameFor(model => model.DetallesVentas.First().PrecioUnitario)</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var detalle in Model.DetallesVentas)
+
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => detalle.Producto.Nombre)</td>
+                <td>@Html.DisplayFor(modelItem => detalle.Cantidad)</td>
+                <td>@Html.DisplayFor(modelItem => detalle.PrecioUnitario)</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
